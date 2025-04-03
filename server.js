@@ -1,3 +1,4 @@
+const cors = require("cors"); // Import CORS
 const express = require("express");  // Import Express
 const fetch = require("node-fetch"); // Import fetch for API requests
 require("dotenv").config(); // Load environment variables
