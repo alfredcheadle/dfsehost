@@ -4,6 +4,26 @@ require("dotenv").config(); // Load environment variables
 
 const app = express(); // ✅ Define the Express app
 
+const allowedOrigins = [ // Allow accepted domains: 
+    "https://www.weareplannedparenthood.org",
+    "https://www.weareplannedparenthoodaction.org/",
+    "https://www.weareplannedparenthoodvotes.org/"
+  ];
+  
+  app.use(
+    cors({
+      origin: function (origin, callback) {
+        if (!origin || allowedOrigins.includes(origin)) {
+          callback(null, true); // Allow the request
+        } else {
+          callback(new Error("Not allowed by CORS")); // Block the request
+        }
+      },
+      methods: "GET",
+      allowedHeaders: ["Content-Type"],
+    })
+  );
+
 app.use(express.json()); // Middleware to parse JSON requests
 
 const PORT = process.env.PORT || 3000;
