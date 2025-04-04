@@ -20,7 +20,7 @@ const allowedOrigins = [ // Allow accepted domains:
           callback(new Error("Not allowed by CORS")); // Block the request
         }
       },
-      methods: "GET",
+      methods: "GET, PUT",
       allowedHeaders: ["Content-Type"],
     })
   );
